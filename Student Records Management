@@ -1,0 +1,227 @@
+/*
+ *  Developed by - Nikhil Namdeo..
+ *  Date - 11/07/2022
+ *  Location - Jabalpur M.P.
+ *  :)  :)  :)  :)  :)  :)
+ */
+
+#include <iostream>
+using namespace std;
+
+string name[20], rollno[20], Standard[20], Field[20], Address[20];
+int total = 0, xx = 0;
+
+void enter()
+{
+    int num;
+    cout << endl
+         << "How many Student do you want to Register : ";
+    cin >> num;
+    if (total == 0)
+    {
+        total = total + num;
+        for (int i = 0; i < num; i++)
+        {
+            system("cls");
+            cout << "Enter data of " << (i + 1) << " Student :\n " << endl;
+            cout << "Enter Name : ";
+            cin >> name[i];
+            cout << "Roll No.   : ";
+            cin >> rollno[i];
+            cout << "Standard   : ";
+            cin >> Standard[i];
+            cout << "Feild      : ";
+            cin >> Field[i];
+            cout << "Address    : ";
+            cin >> Address[i];
+            cout << "-------------------------------";
+        }
+    }
+    else
+    {
+        for (int i = total; i < total + num; i++)
+        {
+
+            system("cls");
+            cout << "\nEnter data of " << (i + 1) << " Student : \n"
+                 << endl;
+            cout << "Enter Name : ";
+            cin >> name[i];
+            cout << "Roll No.   : ";
+            cin >> rollno[i];
+            cout << "Standard   : ";
+            cin >> Standard[i];
+            cout << "Feild      : ";
+            cin >> Field[i];
+            cout << "Address    : ";
+            cin >> Address[i];
+            cout << "-------------------------------";
+        }
+        total = total + num;
+    }
+}
+
+void show()
+{
+    system("cls");
+
+    if (total == 0)
+    {
+        cout << "Record is Empty...";
+    }
+    for (int i = 0; i < total; i++)
+    {
+        cout << "\n\nData of the " << i + 1 << " Student : \n";
+        cout << "\nName       : " << name[i];
+        cout << "\nRoll No.   : " << rollno[i];
+        cout << "\nStandard   : " << Standard[i];
+        cout << "\nField      : " << Field[i];
+        cout << "\nAddress    : " << Address[i];
+        cout << "\n";
+    }
+    int menu;
+    cout << "\n\nEnter 0 For Menu : ";
+    cin >> menu;
+    if (menu == 0)
+    {
+        return;
+    }
+}
+
+void update()
+{
+    string rol;
+    system("cls");
+    cout << "Enter the roll no. of student whose data you want to update : ";
+    cin >> rol;
+    for (int i = 0; i < total; i++)
+    {
+        if (rollno[i] == rol)
+        {
+            cout << "\nUpdate the data of given roll no. : \n"
+                 << endl;
+            cout << "Enter Name : ";
+            cin >> name[i];
+            cout << "Roll No.   : ";
+            cin >> rollno[i];
+            cout << "Standard   : ";
+            cin >> Standard[i];
+            cout << "Feild      : ";
+            cin >> Field[i];
+            cout << "Address    : ";
+            cin >> Address[i];
+        }
+    }
+}
+
+void DeleteData()
+{
+    int rol;
+    system("cls");
+    cout << "Enter 1 for deleting whole records" << endl;
+    cout << "Enter 2 for deleting a specific records" << endl;
+    cin >> rol;
+
+    if (rol == 1)
+    {
+        total = 0;
+        cout << "Whole record is deleted..." << endl;
+    }
+    if (rol == 2)
+    {
+        string ro;
+        system("cls");
+        cout << "Which Student's data you want to delete\nEnter His/Her roll no. :" << endl;
+        cin >> ro;
+        for (int i = 0; i < total; i++)
+        {
+            if (ro == rollno[i])
+            {
+                for (int j = i; j < total; j++)
+                {
+                    name[j] = name[j + 1];
+                    rollno[j] = rollno[j + 1];
+                    Standard[j] = Standard[j + 1];
+                    Field[j] = Field[j + 1];
+                    Address[j] = Address[j + 1];
+                }
+                total--;
+                cout << "\nRecord is deleted successfully....";
+            }
+        }
+    }
+}
+
+void Search()
+{
+    string rol;
+    system("cls");
+    cout << "Enter the roll no. that you want to search : ";
+    cin >> rol;
+    for (int i = 0; i < total; i++)
+    {
+        if (rol == rollno[i])
+        {
+            cout << "\n\nData of the " << i + 1 << " Student : \n";
+            cout << "\nName       : " << name[i];
+            cout << "\nRoll No.   : " << rollno[i];
+            cout << "\nStandard   : " << Standard[i];
+            cout << "\nField      : " << Field[i];
+            cout << "\nAddress    : " << Address[i];
+        }
+    }
+    int menu;
+    cout << "\n\nEnter 0 For Menu : ";
+    cin >> menu;
+    if (menu == 0)
+    {
+        return;
+    }
+}
+
+int main()
+{
+    while (true)
+    {
+        system("cls");
+        cout << "\t\t**School Management Project**" << endl;
+        cout << "\t\t'''''''''''''''''''''''''''''" << endl
+             << endl;
+        int choice;
+        cout << "1. Enter data of Student" << endl;
+        cout << "2. Show data" << endl;
+        cout << "3. Update data" << endl;
+        cout << "4. Delete Data" << endl;
+        cout << "5. Search Student's data" << endl;
+        cout << "6. Exit" << endl
+             << endl;
+        cin >> choice;
+
+        switch (choice)
+        {
+        case 1:
+            enter();
+            break;
+        case 2:
+            show();
+            break;
+        case 3:
+            update();
+            break;
+        case 4:
+            DeleteData();
+            break;
+        case 5:
+            Search();
+            break;
+
+        case 6:
+            return 0;
+
+        default:
+            cout << "Enter Valid Input";
+        }
+    }
+
+    return 0;
+}
